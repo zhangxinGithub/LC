@@ -1,0 +1,22 @@
+{
+  "name": "lc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhangxinGithub/LC.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhangxinGithub/LC/issues"
+  },
+  "homepage": "https://github.com/zhangxinGithub/LC#readme",
+  "dependencies": {
+    "react": "^16.2.0"
+  }
+}

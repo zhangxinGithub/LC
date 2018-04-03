@@ -35,7 +35,7 @@ module.exports = {
             filename: '[name].js.map',
             exclude: ['vendor.js']
         }),
-        new webpack.optimize.CommonsChunkPlugin({
+        /*new webpack.optimize.splitChunks({
             name: 'vendor',
             minChunks: function (module) {
                 //判断依赖环境是否增加   增加就刷新不增加就返回false
@@ -43,9 +43,9 @@ module.exports = {
             }
         }),
         //CommonChunksPlugin will now extract all the common modules from vendor and main bundles
-        new webpack.optimize.CommonsChunkPlugin({
+        new webpack.optimize.splitChunks({
             name: 'manifest' //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
-        })
+        })*/
     ]
 
 }

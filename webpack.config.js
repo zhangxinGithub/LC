@@ -4,8 +4,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const Merge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CommonConfig = require('./webpack.common');
-const hostconfig = require('../config/hostconfig');
+const hostconfig = require('./config/hostconfig');
 
 module.exports = function (env) {
     return Merge(CommonConfig, {
@@ -30,12 +31,14 @@ module.exports = function (env) {
             rules: [
                 {
                     test: /\.(css|scss)$/,
-                    use: [{
-                        loader: 'style-loader'
-                    },
+                    use: [
+                        {
+                            loader: 'style-loader'
+                        },
                         {
                             loader: 'css-loader'
-                        }, {
+                        },
+                        {
                             loader: 'postcss-loader',
                             options: {
                                 plugins: function () {
@@ -46,7 +49,8 @@ module.exports = function (env) {
                                     ]
                                 }
                             }
-                        }, {
+                        },
+                        {
                             loader: 'sass-loader',
                             options: {
                                 outputStyle: 'compact'//输出css的格式两个常用选项:compact({}行), compressed(压缩一行)
@@ -71,9 +75,17 @@ module.exports = function (env) {
             publicPath: '/'
         },
         plugins: [
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': '"production"'
+            new HtmlWebpackPlugin({
+                template: path.resolve(__dirname, 'src', 'index.html'),//模板
+                filename: 'index.html',
+                hash: true,//防止缓存
+                minify: {
+                    removeAttributeQuotes: true//压缩 去掉引号
+                }
             }),
+            /*new webpack.DefinePlugin({
+                'process.env.NODE_ENV': '"production"'
+            }),*/
             new webpack.HotModuleReplacementPlugin(),
             // 开启全局的模块热替换(HMR)
             new webpack.NamedModulesPlugin()
